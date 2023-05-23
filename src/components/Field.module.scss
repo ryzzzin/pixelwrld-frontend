@@ -1,0 +1,24 @@
+@import "../styles/shared.scss";
+
+.field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: $defaultShadow;
+  
+  &__pixels {
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid #e3e3e3;
+    outline-offset: -0.5px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__row {
+    display: flex;
+  }
+}

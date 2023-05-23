@@ -1,0 +1,53 @@
+@import '../styles/shared.scss';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  flex: 1;
+  padding: 16px 20px;
+  min-height: 72px;
+  border-radius: 16px;
+  box-shadow: $defaultShadow;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  &__right {
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__name {
+    color: #606060;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__pixels {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+      aspect-ratio: 1;
+    }
+  }
+
+  &__subtitle {
+    color: #b1b1b1;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+}
