@@ -10,6 +10,8 @@ import { currentSessionState } from '../recoil/game';
 import ColorPalette from '../components/ColorPalette';
 import Field from '../components/Field';
 import { useNavigate, useParams } from 'react-router-dom';
+import { exportSession } from '../utils/exportSession';
+import Timer from '../components/Timer';
 
 const Game: React.FC = () => {
   const navigate = useNavigate();
@@ -32,8 +34,7 @@ const Game: React.FC = () => {
   const savePixel = (pixel: Pixel) => {
     setSession((oldSession) => {
       const newSession = {...oldSession} as Session;
-      console.log(newSession);
-      
+
       if (!newSession?.pixels) return oldSession;
 
       const newPixels = [...newSession.pixels];
@@ -53,6 +54,7 @@ const Game: React.FC = () => {
   }
 
   useEffect(() => {
+    // const serverUrl = 'ws://172.20.10.6:3000'; // todo: remove later
     const serverUrl = baseURL;
     const socket = io(serverUrl);
 
@@ -105,7 +107,10 @@ const Game: React.FC = () => {
       <div className={s.game__content}>
         <div className={[s.game__header, s.header].join(' ')}>
           <div className={s.header__left}>
-            <button className={s.game__back} onClick={navigateToGamesList}>
+            <button
+              className={s.game__back}
+              onClick={navigateToGamesList}
+            >
               <svg>
                 <use xlinkHref={require('../assets/all_icons.svg').default + '#back'} />
               </svg>
@@ -117,7 +122,14 @@ const Game: React.FC = () => {
               { `Session "${session?.name}"` }
             </h1>
           </div>
-          <div className={s.header__right}/>
+          <div className={s.header__right}>
+            <button
+              className={s.game__back}
+              onClick={() => exportSession(session!)}
+            >
+              <span>Export</span>
+            </button>
+          </div>
         </div>
         <div className={s.game__field}>
           {isConnected && session ? (
@@ -126,8 +138,16 @@ const Game: React.FC = () => {
             <p>Не удалось подключиться к серверу WebSocket.</p>
           )}
         </div>
-        <div className={s.game__palette}>
-          <ColorPalette />
+        <div className={s.game__footer}>
+          <div className={s.game__spacer} />
+          <div className={s.game__palette}>
+            <ColorPalette />
+          </div>
+          {session && (
+            <div className={s.game__timer}>
+              <Timer endsAt={session.endsAt} />
+            </div>
+          )}
         </div>
       </div>
     </div>

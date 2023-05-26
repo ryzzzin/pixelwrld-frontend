@@ -16,4 +16,5 @@ export interface CreateSessionDTO {
   name: string;
   width: number;
   height: number;
+  endsAt: string;
 };

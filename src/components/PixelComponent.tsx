@@ -4,6 +4,7 @@ import s from './PixelComponent.module.scss';
 import PixelsService from '../api/pixels';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { currentSessionState, selectedColorState } from '../recoil/game';
+import { Session } from '../types/sessions';
 
 interface Props {
   pixel: Pixel;
@@ -17,7 +18,18 @@ const PixelComponent: React.FC<Props> = ({ pixel }) => {
     '--color': `#${pixel.color}`,
   } as CSSProperties;
 
+  const isSessionExpired = () => {
+    if(!session) return true;
+
+    const currentDate = new Date().getTime();
+    const endsAt = new Date(session.endsAt).getTime();
+
+    return currentDate >= endsAt;
+  }
+
   const savePixelRequest = () => {
+    if(isSessionExpired()) return;
+    
     if (pixel.id) {
       updatePixelRequest(); 
     } else {

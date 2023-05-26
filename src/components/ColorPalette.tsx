@@ -15,9 +15,7 @@ const ColorPalette: React.FC = () => {
   };
 
   const selectColor = (color: string) => {
-    console.log(color);
     setSelectedColor(color);
-    console.log(selectedColor);
   }
 
   return (

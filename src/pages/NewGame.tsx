@@ -11,7 +11,12 @@ const NewGame: React.FC = () => {
     name: '',
     width: 0,
     height: 0,
+    endsAt: new Date().toString(),
   });
+
+  const minEndsAtDate = new Date();
+  const maxEndsAtDate = new Date();
+  maxEndsAtDate.setDate(maxEndsAtDate.getDate() + 31);
 
   const navigateToSession = (sessionId: number) => {
     navigate(`/games/${sessionId}`);
@@ -74,6 +79,18 @@ const NewGame: React.FC = () => {
               required
               min={1}
               max={32}
+            />
+          </div>
+          <div className={s.form__row}>
+            <Input
+              type='datetime-local'
+              className={s.form__input}
+              placeholder='Name'
+              value={newSession.endsAt}
+              setValue={(v) => setNewSession({ ...newSession, endsAt: v })}
+              required
+              min={minEndsAtDate.toISOString().slice(0, 16)}
+              max={maxEndsAtDate.toISOString().slice(0, 16)}
             />
           </div>
           <button className={s.form__button}>
