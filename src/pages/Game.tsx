@@ -96,6 +96,10 @@ const Game: React.FC = () => {
       console.error(e);
       navigateToList();
     });
+
+    return () => {
+      setSession(null);
+    };
   }, [])
 
   const navigateToGamesList = () => {

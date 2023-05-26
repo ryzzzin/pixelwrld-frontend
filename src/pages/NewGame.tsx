@@ -88,9 +88,9 @@ const NewGame: React.FC = () => {
               placeholder='Name'
               value={newSession.endsAt}
               setValue={(v) => setNewSession({ ...newSession, endsAt: v })}
-              required
               min={minEndsAtDate.toISOString().slice(0, 16)}
               max={maxEndsAtDate.toISOString().slice(0, 16)}
+              required
             />
           </div>
           <button className={s.form__button}>
