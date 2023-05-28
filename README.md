@@ -19,4 +19,5 @@ $ npm run start
 
 ## Preview
 
-![preview](https://github.com/ryzzzin/pixelwrld-frontend/assets/65656205/b44d07b2-5689-47d6-b848-80c1929f420c)
+![preview](https://github.com/ryzzzin/pixelwrld-frontend/assets/65656205/b05a3e51-650b-4fac-858b-c09e153bcbb0)
+
